@@ -3,7 +3,7 @@ import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import { useSelector, useDispatch } from "react-redux";
 import { Fragment, useEffect } from "react";
-import { sendCartData } from "./store/ui-slice";
+import { sendCartData } from "./store/cart-slice";
 import Notification from "./components/UI/Notification";
 let isjustInitiated = true;
 function App() {
