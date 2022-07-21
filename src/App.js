@@ -3,7 +3,8 @@ import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import { useSelector, useDispatch } from "react-redux";
 import { Fragment, useEffect } from "react";
-import { sendCartData } from "./store/cart-slice";
+// import { sendCartData } from "./store/cart-slice";
+import { sendCartData } from "./store/cart-actions";
 import Notification from "./components/UI/Notification";
 let isjustInitiated = true;
 function App() {
@@ -57,7 +58,8 @@ function App() {
       return;
     }
     dispatch(sendCartData(cart));
-  }, [cart, dispatch]);
+    // dispatch as dependency bocz need to add any reference type to the dependency array.
+  }, [cart]);
   return (
     <Fragment>
       {notific && (

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { uiActions } from '../store/ui-slice'
+// import { uiActions } from '../store/ui-slice'
 const cartSlice = createSlice({
   name: "cartSlceN",
   initialState: {
@@ -58,47 +58,48 @@ const cartSlice = createSlice({
 // before reaching any dispatch logic and reaching reducer. 
 // Only when reaching reducer, the func will be regarded as "action-creator".
 // Export it bcoz want to use the func.
-export const sendCartData = (cart) => {
-  return async (dispatch) => {
-    // rctTlKit will auto give dispatch arguement.
-    dispatch(
-      uiActions.showNotif({
-        status: "pending",
-        title: "sending...",
-        message: "sending cart data",
-      }));
-    const sendReq = async () => {
-      const resp = await fetch(
-        "https://reactcgsecnineteenadvredux-default-rtdb.asia-southeast1.firebasedatabase.app/carts.json",
-        {
-          method: "PUT",
-          body: JSON.stringify(cart),
-        }
-      );
-      if (!resp.ok) {
-        throw new Error("sending failed");
-      }
-    }
-    try {
-      await sendReq();
-      dispatch(
-        uiActions.showNotif({
-          status: "success",
-          title: "Success!",
-          message: "sent cart data",
-        })
-      );
-    }
-    catch (err) {
-      dispatch(
-        uiActions.showNotif({
-          status: "error",
-          title: "Error!",
-          message: "sending cart data failed",
-        })
-      );
-    }
-  }
-}
+// moved to cart-action.js.
+// export const sendCartData = (cart) => {
+//   return async (dispatch) => {
+//     // rctTlKit will auto give dispatch arguement.
+//     dispatch(
+//       uiActions.showNotif({
+//         status: "pending",
+//         title: "sending...",
+//         message: "sending cart data",
+//       }));
+//     const sendReq = async () => {
+//       const resp = await fetch(
+//         "https://reactcgsecnineteenadvredux-default-rtdb.asia-southeast1.firebasedatabase.app/carts.json",
+//         {
+//           method: "PUT",
+//           body: JSON.stringify(cart),
+//         }
+//       );
+//       if (!resp.ok) {
+//         throw new Error("sending failed");
+//       }
+//     }
+//     try {
+//       await sendReq();
+//       dispatch(
+//         uiActions.showNotif({
+//           status: "success",
+//           title: "Success!",
+//           message: "sent cart data",
+//         })
+//       );
+//     }
+//     catch (err) {
+//       dispatch(
+//         uiActions.showNotif({
+//           status: "error",
+//           title: "Error!",
+//           message: "sending cart data failed",
+//         })
+//       );
+//     }
+//   }
+// }
 export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
