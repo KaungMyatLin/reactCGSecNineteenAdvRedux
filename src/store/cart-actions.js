@@ -1,4 +1,5 @@
 import { uiActions } from './ui-slice'
+import { cartActions } from './cart-slice'
 
 export const fetchCartData = () => {
   // async bcoz await inside asynchronous try-catch.
@@ -15,6 +16,7 @@ export const fetchCartData = () => {
     try {
       // await bcoz inside asynchronous try-catch.
       const cartData = await fetchData();
+      dispatch(cartActions.replaceCart(cartData))
     }
     catch (err) {
       dispatch(

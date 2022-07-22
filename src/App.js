@@ -4,7 +4,7 @@ import Products from "./components/Shop/Products";
 import { useSelector, useDispatch } from "react-redux";
 import { Fragment, useEffect } from "react";
 // import { sendCartData } from "./store/cart-slice";
-import { sendCartData } from "./store/cart-actions";
+import { sendCartData, fetchCartData } from "./store/cart-actions";
 import Notification from "./components/UI/Notification";
 let isjustInitiated = true;
 function App() {
@@ -58,8 +58,11 @@ function App() {
       return;
     }
     dispatch(sendCartData(cart));
-    // dispatch as dependency bocz need to add any reference type to the dependency array.
-  }, [cart]);
+  }, [cart, dispatch]);
+  useEffect(() => {
+    dispatch(fetchCartData)
+    // this dispatch action will never rerun bcoz all actions are user made changes in app. But for completeness sake
+  }, [dispatch])
   return (
     <Fragment>
       {notific && (

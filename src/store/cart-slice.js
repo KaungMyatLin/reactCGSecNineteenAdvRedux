@@ -9,10 +9,10 @@ const cartSlice = createSlice({
   reducers: {
     // replaceCart is alternative to addItmToCart.
     // it won't do a lot of work than just mutate-assign. Thus, ProductItem.js is fat-component.
-    // replaceCart(state, action) {
-    //   state.totalQuantity = action.payload.totalQuantity;
-    //   state.items = action.payload.items;
-    // },
+    replaceCart(state, action) {
+      state.totalQuantity = action.payload.totalQuantity;
+      state.items = action.payload.items;
+    },
     // addItmToCart reducer do a lot of work inside, thus, it is fat-reducer.
     // ** important: use fat-reducer for synchronous & pure code.
     // put asynchronous & side effect in fat-component and fat-action-creator only. **
