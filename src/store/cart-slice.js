@@ -5,6 +5,7 @@ const cartSlice = createSlice({
   initialState: {
     items: [],
     totalQuantity: 0,
+    change: false, 
   },
   reducers: {
     // replaceCart is alternative to addItmToCart.
@@ -17,9 +18,10 @@ const cartSlice = createSlice({
     // ** important: use fat-reducer for synchronous & pure code.
     // put asynchronous & side effect in fat-component and fat-action-creator only. **
     addItmToCart(state, action) {
+      state.totalQuantity++;
+      state.change = true;
       const newitem = action.payload;
       const existItm = state.items.find((itm) => itm.id === newitem.id);
-      state.totalQuantity++;
       if (!existItm) {
         state.items.push({
           id: newitem.id,
@@ -36,6 +38,7 @@ const cartSlice = createSlice({
     },
     rmItmToCart(state, action) {
         state.totalQuantity--;
+        state.change = true;
         const id = action.payload;
         const existItm = state.items.find(itm => itm.id === id);
         if (existItm.quantity === 1){

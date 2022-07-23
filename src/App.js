@@ -13,6 +13,10 @@ function App() {
   const dispatch = useDispatch();
   const notific = useSelector((state) => state.uiSlceRdr.notific);
   useEffect(() => {
+    dispatch(fetchCartData())
+    // this dispatch action will never rerun bcoz all actions are user made changes in app. But for completeness sake
+  }, [dispatch])
+  useEffect(() => {
     // moved logic to separate standlone func in cart-slice.js.
     // const sendCartData = async () => {
     //   dispatch(
@@ -57,12 +61,10 @@ function App() {
       isjustInitiated = false;
       return;
     }
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
-  useEffect(() => {
-    dispatch(fetchCartData)
-    // this dispatch action will never rerun bcoz all actions are user made changes in app. But for completeness sake
-  }, [dispatch])
   return (
     <Fragment>
       {notific && (

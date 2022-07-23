@@ -47,7 +47,7 @@ export const sendCartData = (cart) => {
           // but in Http section, we use 'POST', we let firebase create a list of data, 
           // which turn out to be an obj when we fetch it.
           method: "PUT",
-          body: JSON.stringify(cart),
+          body: JSON.stringify({ items: cart.items, totalQuantity: cart.totalQuantity }),
         }
       );
       if (!resp.ok) {
