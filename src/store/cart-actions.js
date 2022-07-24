@@ -16,7 +16,12 @@ export const fetchCartData = () => {
     try {
       // await bcoz inside asynchronous try-catch.
       const cartData = await fetchData();
-      dispatch(cartActions.replaceCart(cartData))
+      dispatch(cartActions.replaceCart(
+        {
+          items: cartData.items || [],
+          totalQuantity: cartData.totalQuantity
+        }
+      ))
     }
     catch (err) {
       dispatch(
