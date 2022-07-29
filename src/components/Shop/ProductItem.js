@@ -11,17 +11,17 @@ const ProductItem = (props) => {
   const addItmToCartH = () => {
     // const newTotalQuantity = cart.totalQuantity + 1;
 
-    // const updatedItems = cart.items.slice();
+    // const updatedItems = cart.items.slice(); // new array
+    // const existingItemIdx = updatedItems.findIndex((itm) => itm.id === id);
     // const existingItem = updatedItems.find((itm) => itm.id === id);
     // if (existingItem) {
     //   const updatedItem = { ...existingItem };
     //   updatedItem.quantity++;
     //   updatedItem.totalPrice = updatedItem.totalPrice + price;
-    //   const existingItemIdx = updatedItems.findIndex((itm) => itm.id === id);
     //   updatedItems[existingItemIdx] = updatedItem;
     // }
     // else {
-    //   updatedItems.push({
+    //   updatedItems.push({  // not creating new array.
     //     id,
     //     price,
     //     quantity: 1,
